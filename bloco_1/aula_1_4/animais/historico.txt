@@ -1,0 +1,5 @@
+  424  history
+  425  tail -3 | history
+  426  tail | history
+  427  history | tail -3
+  428  history | tail -5 > historico.txt

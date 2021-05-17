@@ -1,0 +1,7 @@
+azul
+branco
+laranja
+lilas
+preto
+roxo
+verde
