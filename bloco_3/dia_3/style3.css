@@ -1,0 +1,18 @@
+h1, p, li, ol, ul{
+    text-align: center;
+
+}
+
+
+li:hover{
+ 
+    background-color: blue;
+
+}
+
+li:active{
+
+    font-family: 'Courier New', Courier, monospace;
+    list-style: none;
+    color: cornsilk;
+}
