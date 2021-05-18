@@ -1,6 +1,76 @@
+*{
+    font-family: sans-serif;
+    margin: 0;
+    box-sizing: border-box;
+}
 
 li.menu{
     list-style: none;
     display: inline;
     margin-right: 40px;
+    font-size: 30px;
+    text-align: center;
 }
+
+h2,h3{
+    margin: 0 0 20px;
+}
+
+p{
+    margin-bottom: 5px;
+}
+
+.side-bar{
+    background-color: lightgrey;
+    margin: 10px;
+    padding: 20px;
+    width: 400px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.navigation {
+    background-color: cornflowerblue;
+    padding: 0 30px;
+  }
+
+  .main-cotent{
+      width:fit-content;
+      display: inline-block;
+  }
+
+  .imagens{
+      float: left;
+  }
+
+  .article{
+      width: 80%;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 20px;
+  }
+
+  .sub-article{
+      display: inline-block;
+      margin-right: 10px;
+      padding: 15px;
+      margin-left: 10px;
+      text-align: left;
+  }
+
+  h3{
+      text-align: center;
+  }
+
+  #compilado{
+      text-align: center;
+      padding: 15px;
+      border: solid black;
+      font-size: 20px;
+      
+  }
+
+  table{
+      display: inline-block;
+  }
