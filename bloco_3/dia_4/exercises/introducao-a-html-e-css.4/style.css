@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+body{
+    background-color: lightseagreen;
+}
+
 li.menu{
     list-style: none;
     display: inline;
@@ -12,7 +16,7 @@ li.menu{
     text-align: center;
 }
 
-h2,h3{
+h1,h2,h3{
     margin: 0 0 20px;
 }
 
@@ -40,7 +44,9 @@ p{
   }
 
   .imagens{
+      margin-left: 100px; 
       float: left;
+     
   }
 
   .article{
@@ -49,14 +55,17 @@ p{
       margin-left: auto;
       margin-right: auto;
       font-size: 20px;
+      display: block;
+      
   }
 
   .sub-article{
       display: inline-block;
       margin-right: 10px;
       padding: 15px;
-      margin-left: 10px;
+      margin-left: 100px;
       text-align: left;
+      padding: 10px;
   }
 
   h3{
@@ -68,9 +77,21 @@ p{
       padding: 15px;
       border: solid black;
       font-size: 20px;
+      background-color: lightskyblue;
+      color: black;
+      font-weight: bold;
       
   }
 
   table{
       display: inline-block;
+  }
+
+  header{
+      text-align: center;
+      font-size: 35px;
+  }
+
+  .table{
+      margin-left: 700px;
   }
