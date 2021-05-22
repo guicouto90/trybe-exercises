@@ -1,5 +1,5 @@
 let ast = "*";
-let n = 100;
+let n = 5;
 let ast2;
 let ast3 = new Array(n);
 
