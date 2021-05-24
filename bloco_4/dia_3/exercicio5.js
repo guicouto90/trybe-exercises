@@ -31,7 +31,7 @@ if(n%2==0){
 if(n%2!=0){
     for(let cont2 = 0; cont2<n; cont2 +=2){
         ast3[cont2] = ast;
-        ast2 = ast.replace('****',' ');
+        ast2 = ast.replace('**',' ');
         ast = ast2;
       }
 }
