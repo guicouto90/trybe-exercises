@@ -1,0 +1,10 @@
+      //const paragraph = document.getElementById("paragraph");
+      //paragraph.style.color = "red";
+      const title = document.getElementById("page-title");
+      title.innerText = "Bastardos Iglorios";
+      //const paragraph2 = document.getElementById("second-paragraph");
+      //paragraph2.innerText = "Filme do Tarantino, sobre nazismo.";
+      //const subtitle = document.getElementById("subtitle");
+      //subtitle.innerText = "Mais sobre o filme: ";
+      document.getElementsByClassName("paragraph")[0].style.color = "Blue";
+      document.getElementsByTagName("h4")[0].style.color = "green";
