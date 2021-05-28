@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Exercício 5.2</title>
+    <style>
+      div {
+        border-color: black;
+        border-style: solid;
+      }
+
+      .title {
+        text-align: center;
+      }
+
+      .main-content {
+        background-color: yellow;
+      }
+
+      .main-content .center-content {
+        background-color: red;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .main-content .center-content p {
+        font-style: italic;
+      }
+
+      .main-content .left-content {
+        background-color: green;
+        width: 60%;
+        margin-left: 0;
+        margin-right: auto;
+      }
+
+      .main-content .left-content .small-image {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 100%;
+      }
+
+      .main-content .right-content {
+        background-color: blue;
+        width: 60%;
+        margin-left: auto;
+        margin-right: 0;
+      }
+
+      .main-content .description {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      // COLOQUE SEU CÓDIGO AQUI
+      let firstH1 = document.createElement('h1');
+      firstH1.innerText = "Exercício 5.2 - JavaScript DOM";
+      document.querySelector('body').appendChild(firstH1);
+      firstH1.classList.add('title');
+
+      let firstDiv = document.createElement('div');
+      firstDiv.classList.add('main-content');
+      document.querySelector('body').appendChild(firstDiv);
+
+      let secondDiv = document.createElement('div');
+      secondDiv.classList.add('center-content');
+      document.querySelector('body').appendChild(secondDiv);
+
+      let firstP = document.createElement('p');
+      firstP.innerText = "Trabalhando com elementos JavaScript no HTML";
+      document.querySelector('.center-content').appendChild(firstP);
+
+      let thirdDiv = document.createElement('div');
+      thirdDiv.classList.add('left-content');
+      document.querySelector('body').appendChild(thirdDiv);
+
+      let fourthDiv = document.createElement('div');
+      fourthDiv.classList.add('right-content');
+      document.querySelector('body').appendChild(fourthDiv);
+
+      let firstImg = document.createElement('img');
+      firstImg.classList.add('small-image');
+      document.querySelector('.left-content').appendChild(firstImg);
+      firstImg.src = "https://picsum.photos/200";
+
+      let firstUl = document.createElement('ul');
+      document.querySelector('.right-content').appendChild(firstUl);
+
+      let firstLi= new Array(10);
+      
+      for(let index = 1; index <= 10; index +=1){
+          firstLi[index] = document.createElement('li');
+          firstLi[index].innerText = index;
+          document.querySelector('ul').appendChild(firstLi[index]);
+      }
+
+      let firstH3 = new Array(3);
+
+      for(let index = 0; index < 3; index +=1){
+          firstH3[index] = document.createElement('h3');
+          document.querySelector('.main-content').appendChild(firstH3[index]);
+          firstH3[index].classList.add('description');
+      }
+
+      document.body.removeChild(thirdDiv);
+
+      fourthDiv.style.marginRight = 'auto';
+
+      document.querySelector('.center-content').parentElement.style.backgroundColor = "green";
+      document.getElementsByTagName('ul')[0].removeChild(firstLi[9]);
+      document.getElementsByTagName('ul')[0].removeChild(firstLi[10]);      
+    </script>
+  </body>
+</html>
