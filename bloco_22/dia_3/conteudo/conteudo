@@ -1,0 +1,21 @@
+RESUMO 22.3
+REDES
+docker network create -d bridge tryber-network => para criacao de uma rede docker
+para comunicacao entre os containers;
+
+docker network connect tryber-network container1 => conecta o container1 a rede tryber-
+network;
+
+docker network inspect tryber-network => verifica os containers que estao conectados
+nessa rede;
+
+docker run -itd --name container3 --network tryber-network busybox => com esse comando
+consegue criar o container, e conectar ele diretamente em alguma rede;
+
+VOLUMES
+docker run -v "trybe-vqv" ubuntu => -v de volume;
+
+DOCKER-COMPOSE
+
+docker-compose up => para execucao do docker compose. Ele procura pelo arquivo docker-compose.yaml dentro da pasta que está sendo executada o comando.
+O arquivo docker-compose.yaml é uma sequencia de comando para criacao do container, criacao do volume, definicao de portas,

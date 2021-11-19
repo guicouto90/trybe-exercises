@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio Responsivo dia 1</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+<body>
+    <H1>FORMULÁRIO PARA CURRICULO</H1>
+    <div>
+        <h2>Dados Pessoais: </h2>
+        <fieldset class="">
+            <div class="">
+              <label for="name">Nome: 
+              <input type="text" id="name" placeholder="Digite seu nome">
+            </div>
+            <br>
+            <div class="">
+              <label for="email">E-mail:
+              <input type="text" id="email" placeholder="Digite seu email">
+            </div>
+            <br>
+            <div class="">
+              <label for="CPF">CPF: 
+              <input type="text" id="CPF" placeholder="Digite seu cpf">
+            </div>
+            <br>
+            <div class="">
+              <label for="endereco">Endereço:
+              <input type="text" id="endereco" placeholder="Digite seu endereço">
+            </div>
+            <br>
+            <div class="">
+                <label for="cidade">Cidade: </label>
+                <input type="text" id="cidade" maxlength="28" required placeholder="Digite sua cidade">
+            </div>
+            <br>
+            <div>
+                <label for="estados">Estado: </label>
+                <select name="estados" id="estados"></select>
+            </div>
+            <div>
+                <p>Qual o tipo de moradia: </p>
+                <label for="Casa">Casa:</label>
+                <input type="radio" name="tipo-moradia" value="casa" id="moradia">
+                <label for="ap">Apartamento:</label>
+                <input type="radio" name="tipo-moradia" value="ap" id="moradia">
+            </div>
+        </fieldset>
+    </div>
+    <div>
+        <h2>Dados do seu ultimo emprego: </h2>
+        <fieldset class="">
+            <div class="">
+              <label for="curriculo">Resumo Curriculo: 
+              <textarea name="" id="curriculo" cols="50" rows="25" placeholder="Resumo do curriculo em até 1000 caracteres"></textarea>
+            </div>
+            <br>
+            <div class="">
+              <label for="cargo">Ultimo cargo:
+              <input type="text" id="cargo" maxlength="40" required placeholder="Digite seu ultimo cargo">
+            </div>
+            <br>
+            <div class="">
+              <label for="descricao-cargo">Descricao do cargo 
+              <input type="text" id="descricao-cargo" maxlength="500" required placeholder="Descreva seu cargo">
+            </div>
+            <br>
+            <div class="">
+              <label for="data">Data de inicio:
+              <input type="date" id="data">
+            </div>
+            <br>
+        </fieldset>
+    </div>
+    
+
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+//RESUMO AULA DOCKER 22.1
+
+docker container create <imagem> - cria imagem
+docker container run <imagem> - cria a imagem tambem e ja executa
+docker container start <container id> - inicializa o container ja baixado na maquina
+docker container pause <container id> - pausa o container que estava ativo
+docker container stop <container id> - para o container
+docker container rm <container id> - exclui o container(mas a imagem continua baixada localmente) - se fizer com a tag -f ele força a remocao
+docker container ls -a ou ps -a => tabela mostra todos os containers da maquina
+
+docker run -it <imagem><comando> ou docker container run -it <imagem><comando>=> inicia o container em modo interativo... permite que enviamos texto dentro do container
+docker attach <name> => modo interativo do container
+
+docker container run -dit => 
+
+docker container prune => exclui todos os containers parados

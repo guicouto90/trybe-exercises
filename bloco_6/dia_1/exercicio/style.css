@@ -1,0 +1,11 @@
+.fields {
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    padding: 40px;
+}
+.conteudo {
+    display: block;
+    padding: 5px;
+  
+}

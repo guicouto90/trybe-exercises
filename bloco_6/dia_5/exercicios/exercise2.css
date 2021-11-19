@@ -1,0 +1,21 @@
+html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+  @media screen and (max-width: 600px) {
+    body {
+      margin: 15px;
+      font-size: 1.1em;
+    }
+    
+    .aside-one, .aside-two {
+      font-size: 1.3em;
+    }
+
+    .main-content {
+      font-family: sans-serif;
+    }
+  }

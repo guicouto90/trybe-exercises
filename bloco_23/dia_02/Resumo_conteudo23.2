@@ -1,0 +1,46 @@
+//Resumo conteudo 23.2
+
+COMANDOS:
+findOne() => traz o primeiro valor da collection;
+count() => traz a quantidade;
+sort() => ordenar;
+exists() => existe;
+deleteOne() => deleta 1 documento;
+deleteMany() => delata muitos;
+
+
+*MENOR QUE: db.filmes.find({ano: {$lt: 1990} } ); => $lt: LESS THAN;
+*MENOR E IGUAIS QUE: db.filmes.find({ano: {$lte: 1990 } } ); => $lte => LESS AND EQUAL THAN:
+*MAIOR QUE: $gt => GREATER THAN;
+*MAIOR E IGUAIS QUE: $gte => GREATER AND EQUAL THAN;
+*IGUAL A: $eq => EQUAL;;
+*NÃO IGUAL A: $ne => NOT EQUAL;
+*DENTRO: $in => IN = db.filmes({ano: {$in: [2015,2016] } } ); traz todos os filmes em que o lancamento foi em 2015 e 2016;
+*NAO ESTAO DENTRO: $nin => NOT IN;
+
+//OPERADORES LOGICOS
+*NÃO É: $not = NOT => db.inventory.find({ price: { $not: { $gt: 1.99 } } }) = O preço nao é maior que 1.99;
+*OU: $or = OR => db.inventory.find({ $or: [{ qty: { $lt: 20 } }, { price: 10 }] }) = Quantidade menor que 20 ou preço igual a 10;
+*NÃO É OU: $nor = NOT OR => db.inventory.find({ $nor: [{ price: 1.99 }, { sale: true }] }) = 
+   - Contêm o atributo price com o valor diferente de 1.99 e o atributo sale com o valor diferente de true ;
+   - Ou contêm o atributo price com valor diferente de 1.99 e não contêm o atributo sale ;
+   - Ou não contêm o atributo price e contêm o atributo sale com valor diferente de true ; 
+   - Ou não contêm o atributo price e nem o atributo sale.
+*E: $and = AND => db.inventory.find({
+and: [
+        { price: { $ne: 1.99 } },
+        { price: { $exists: true } }
+    ]
+}); = Preço nao é 1.99 e preco existe;
+
+//SORT
+db.filmes.find().sort({ano: 1 }) CRESCENTE ou .sort({ano: -1}) DECRESCENTE;
+
+//DELETE
+db.filmes.deleteOne({ano: 1968}); => deleta o primeiro documento com ano de 1968;
+db.filmes.deleteMany({ano: {$gt: 2010} }); => deleta todos os documentos com ano maior que 2010;
+db.dropDatabase() => dropa o banco de dados inteiro;
+
+//EXISTS
+db.inventory.find({ qty: { $exists: true } }) = Traz todos os documentos onde o campo qty existem;
+db.inventory.find({ qty: { $exists: true, $nin: [ 5, 15 ] } }) = traz todos os documentos onde o atributo qty existem e NAO sao 5 e 15;

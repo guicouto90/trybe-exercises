@@ -1,0 +1,15 @@
+body {
+  text-align: justify;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+button {
+    margin: 30px;
+}
+
+.button-container {
+    background-color: #eee;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}

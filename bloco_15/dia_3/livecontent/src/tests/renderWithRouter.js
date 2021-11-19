@@ -1,0 +1,28 @@
+import React from 'react';
+import {render} from '@testing-library/react'; //retorna varios 
+import { createMemoryHistory } from 'history';
+import { Router } from 'react-router-dom';
+
+/* const renderWithRouter = (component) => {
+    const mockHistory = createMemoryHistory();
+    const screen = render(
+        <Router history={mockHistory}>
+            {component}
+        </Router>
+    );
+    return {...screen, history:mockHistory}
+} */
+
+const renderWithRouter = (component) => {
+    const mockHistory = createMemoryHistory();
+
+    return  { ...render(
+        <Router history={mockHistory}>
+            {component}
+        </Router>
+    ),
+     history:mockHistory
+    }
+}
+
+export default renderWithRouter;
