@@ -1,0 +1,314 @@
+//EXERCICIOS FIXAÇÃO DIA 25.2 AGGREGATION FRAMEWORK
+use('agg_example');
+db.clients.find();
+use('agg_example');
+db.transactions.find();
+
+//Exercicio 1 - Selecione todos os clientes com as suas respectivas transações feitas;
+//Metodo comum:
+use("agg_example");
+db.clients.aggregate([
+  {
+    $lookup: {
+      from: "transactions",
+      localField: "name",
+      foreignField: "from",
+      as: "transactions"
+    },
+  },
+]); 
+//Metodo utilizando let e o pipeline:
+use('agg_example');
+db.clients.aggregate([
+  {
+    $lookup: {
+      from: "transactions",
+      let: { user_name: "$name" },
+      pipeline: [
+        { 
+          $match: {
+            $expr: {
+              $eq: ["$from", "$$user_name"],
+            }
+          }
+        }
+      ],
+      as: "transactions"
+    }
+  }
+]);
+
+//Exercicio 2 - Selecione os quatro primeiros clientes com as suas respectivas transações recebidas ordenados pelo estado em ordem alfabética;
+//Metodo comum:
+use("agg_example");
+db.clients.aggregate([
+  {
+    $lookup: {
+      from: "transactions",
+      localField: "name",
+      foreignField: "to",
+      as: "receivedTransactions"
+    },
+  },
+  {
+    $sort: { State: 1 },
+  },
+  {
+    $limit: 4
+  }
+]);
+
+//Metodo let e pipeline
+use('agg_example');
+db.clients.aggregate([
+  {
+    $lookup: {
+      from: "transactions",
+      let: { user_name: "$name" },
+      pipeline: [
+        { 
+          $match: {
+            $expr: {
+              $eq: ["$to", "$$user_name"],
+            }
+          }
+        }
+      ],
+      as: "receivedTransactions"
+    }
+  },
+  {
+    $sort: {
+      State: 1
+    },
+  },
+  {
+    $limit: 4
+  },
+]);
+
+//Exercicio 3 - Selecione todos os cliente do estado da "Florida" e suas respectivas transações recebidas.
+//Metodo Comum:
+use("agg_example");
+db.clients.aggregate([
+  {
+    $match: {
+      State: "Florida"
+    }
+  },
+  {
+    $lookup: {
+      from: "transactions",
+      localField: "name",
+      foreignField: "from",
+      as: "transactions"
+    }
+  }
+]);
+
+//Metodo let e pipeline:
+use("agg_example");
+db.clients.aggregate([
+  {
+    $match: {
+      State: "Florida"
+    }
+  },
+  {
+    $lookup: {
+      from: "transactions",
+      let: { user_name: "$name" },
+      pipeline: [
+        {
+          $match: {
+            $expr: {
+              $eq: ["$from", "$$user_name"]
+            }
+          }
+        }
+      ],
+      as: "transactions"
+    }
+  }
+]);
+
+/*use("agg_example")
+db.products.insertMany([
+  { "name": "Ball", "purchase_price": 7.6, "taxes": 1.9, "sale_price": 12.5, "quantity": 5 },
+  { "name": "Baseball bat", "purchase_price": 18.5, "taxes": 5.3, "sale_price": 39.9, "quantity": 12 },
+  { "name": "Sneakers", "purchase_price": 10.4, "taxes": 1.50, "sale_price": 14.9, "quantity": 3 },
+  { "name": "Gloves", "purchase_price": 2.85, "taxes": 0.90, "sale_price": 5.70, "quantity": 34 },
+  { "name": "Jacket", "purchase_price": 28.9, "taxes": 10.80, "sale_price": 59.9, "quantity": 20 },
+  { "name": "Mousepad", "purchase_price": 16.6, "taxes": 3.40, "sale_price": 29.9, "quantity": 8 },
+  { "name": "Monitor", "purchase_price": 119.9, "taxes": 39.20, "sale_price": 240.6, "quantity": 11 },
+]);*/
+
+//Fixação com a expressão $add
+
+//Exercicio 1 - Calcule qual o custo total de cada produto, considerando o preço de compra e os impostos.
+use("agg_example")
+db.products.aggregate([
+  {
+    $project: {
+      _id: 0,
+      name: 1,
+      custoTotal: {
+        $add: ["$purchase_price", "$taxes"]
+      }
+    }
+  }
+]);
+
+//Fixação com a expressão $subtract
+
+//Exercicio 1 - Calcule qual o lucro total de cada produto, considerando o preço de compra, os impostos e seu valor de venda.
+use("agg_example")
+db.products.aggregate([
+  {
+    $project: {
+      _id: 0,
+      name: 1,
+      lucro: {
+        $subtract: [
+          "$sale_price", { $add: ["$purchase_price", "$taxes"] } 
+        ] 
+      }
+    }
+  }
+]);
+
+//Fixação com expressoes $ceil, $floor e $round
+
+//Exercicio 1 - Retorne o menor número inteiro relativo ao preço de venda de cada produto;
+use("agg_example");
+db.products.aggregate([
+  {
+    $project: {
+      _id: 0,
+      name: 1,
+      valorInteiro: {
+        $round: ["$sale_price"]
+      }
+    }
+  },
+  {
+    $sort: {
+      valorInteiro: 1
+    }
+  },
+  {
+    $limit: 1
+  },
+])
+//Exercicio 2 - Retorne o maior número inteiro relativo ao lucro total sobre cada produto. Nota: Desconsiderar taxas (taxes)
+use("agg_example")
+db.products.aggregate([
+  {
+    $project: {
+      _id: 0,
+      name: 1,
+      lucro: {
+        $round: [
+          { $subtract: ["$sale_price", "$purchase_price" ] }
+        ]
+      }
+    }
+  },
+  {
+    $sort: {
+      lucro: -1
+    }
+  },
+  {
+    $limit: 1
+  }
+]);
+
+//Fixação com a expressão $abs
+//Exercicio 1 - Calcule o valor absoluto do lucro total de cada produto.
+use("agg_example")
+db.products.aggregate([
+  {
+    $project: {
+      _id: 0,
+      name: 1,
+      lucro: {
+        $abs: {
+            $subtract: [
+            "$sale_price", { $add: ["$purchase_price", "$taxes"] } 
+          ] 
+        }
+      }
+    }
+  }
+]);
+
+//Fixação com a expressão $multiply
+//Exercicio 1 - Calcule qual o valor total em estoque de cada produto, considerando o preço de venda e a quantidade;
+use("agg_example");
+db.products.aggregate([
+  {
+    $project: {
+      _id: 0,
+      name: 1,
+      totalEstoque: {
+        $multiply: ["$sale_price", "$quantity"]
+      }
+    }
+  }
+])
+//Exercicio 2 - Calcule qual será o lucro total de cada produto caso todo o estoque seja vendido.
+use('agg_example');
+db.products.aggregate([
+  {
+    $project: {
+      _id: 0,
+      name: 1,
+      total_profit: {
+        $multiply: [
+          {
+            $subtract: [
+              "$sale_price",
+              { $add: ["$taxes", "$purchase_price"] }
+            ]
+          }, 
+          "$quantity"
+        ]
+      }
+    }
+  }
+]);
+
+
+//Fixação com a expressão $divide
+//Exercicio 1 - Calcule qual será o preço de venda de cada produto caso haja uma promoção de 50% de desconto.
+use('agg_example');
+db.products.aggregate([
+  {
+    $project: {
+      _id: 0,
+      name: 1,
+      new_price: {
+        $subtract: [
+          "$sale_price", {
+          $multiply: [{ $divide: [50, 100] }, "$sale_price"
+            ]
+          }
+        ]
+      }
+    }
+  }
+]);
+
+//Fixação com o estagio $addField
+//Exercicio 1 - Calcule o valor total do estoque, considerando que cada produto valha o mesmo que seu preço de venda. Lembre-se da quantidade.
+use('agg_example');
+db.products.aggregate([
+  {
+    $addFields: {
+      stock_total_value: {
+        $multiply: ["$sale_price", "$quantity"]
+      }
+    }
+  }
+]);
