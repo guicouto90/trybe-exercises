@@ -1,0 +1,100 @@
+Resumo conteudo 26.1 NODE JS
+
+//TIPOS DE MODULOS:
+* Módulos internos
+- fs : Fornece uma API para interagir com o sistema de arquivos de forma geral;
+- url : Provê utilitários para ler e manipular URLs;
+- querystring : Disponibiliza ferramentas para leitura e manipulação de parâmetros de URLs;
+- util : Oferece ferramentas e funcionalidades comumente úteis a pessoas programadoras.
+
+* Módulos locais = Módulos locais são aqueles definidos juntamente à nossa aplicação. Representam funcionalidades ou partes do nosso programa que foram separados em arquivos diferentes.
+
+* Módulos de terceiros = Módulos de terceiros são aqueles criados por outras pessoas e disponibilizados para uso através do npm .
+
+//EXPORTANDO MODULOS
+EXEMPLO:
+//1
+// brlValue.js
+const brl = 5.37;
+
+module.exports = brl; = module.exports é a variavel global para exportar algo no sistema CommonJS
+
+//2
+// brlValue.js
+const brl = 5.37;
+
+const usdToBrl = (valueInUsd) => valueInUsd * brl;
+
+module.exports = usdToBrl;
+
+//3
+// index.js
+const convert = require('./brlValue');
+
+const usd = 10;
+const brl = convert(usd);
+
+console.log(brl) // 53.7
+
+//4
+// brlValue.js
+const brl = 5.37;
+
+const usdToBrl = (valueInUsd) => valueInUsd * brl;
+
+module.exports = {
+  brl,
+  usdToBrl,
+};
+
+ao importarmos o exemplo acima, receberemos os valores:
+// index.js
+const brlValue = require('./brValue');
+
+console.log(brlValue); // { brl: 5.37, usdToBrl: [Function: usdToBrl] }
+
+console.log(`Valor do dólar: ${brlValue.brl}`); // Valor do dólar: 5.37
+console.log(`10 dólares em reais: ${brlValue.usdToBrl(10)}`); // 10 dólares em reais: 53.7
+
+//IMPORTANDO MODULOS:
+*require = é o comando para importar os modulos.
+- Módulos locais: require('./meuModulo');
+EXEMPLO:
+//1
+// meuModulo/funcionalidade-1.js
+
+module.exports = function () {
+  console.log('funcionalidade1');
+}
+// meuModulo/funcionalidade-2.js
+
+module.exports = function () {
+  console.log('funcionalidade2');
+}
+// meuModulo/index.js
+const funcionalidade1 = require('./funcionalidade-1');
+const funcionalidade2 = require('./funcionalidade-2');
+
+module.exports = { funcionalidade1, funcionalidade2 };
+
+// minha-aplicacao/index.js
+const meuModulo = require('./meuModulo');1
+
+console.log(meuModulo); // { funcionalidade1: [Function: funcionalidade1], funcionalidade2: [Function: funcionalidade2] }
+
+meuModulo.funcionalidade1();
+
+* Modulos internos: require('fs')
+const fs = require('fs');
+
+fs.readFileSync('./meuArquivo.txt');
+
+* Modulos terceiros: são importados da mesma forma que os módulos internos: passando seu nome como parâmetro para a função require.
+
+//NPM
+* npm init:
+
+
+//RESUMO CONTEUDO AO VIVO
+* Todo arquivo JS é um modulo.
+* 
