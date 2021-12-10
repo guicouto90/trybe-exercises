@@ -1,0 +1,16 @@
+{
+  "name": "dia_03",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ConteudoDia.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha tests"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.4"
+  }
+}
